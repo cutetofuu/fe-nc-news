@@ -1,3 +1,36 @@
 .App {
   text-align: center;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.img__article {
+  width: 100%;
+}
+
+.section__article {
+  padding: 0 10px;
+}
+
+.article__title {
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+span {
+  margin: 0 10px;
+}
+
+.article__card__footer {
+  display: flex;
+  justify-content: space-between;
+}
