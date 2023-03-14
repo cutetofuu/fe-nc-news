@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticles } from "../utils/api";
+import { getArticleById } from "../utils/api";
 import { SingleArticleCard } from "./SingleArticleCard";
 
 export const SingleArticle = () => {
@@ -10,13 +10,11 @@ export const SingleArticle = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(article_id).then((singleArticleData) => {
+    getArticleById(article_id).then((singleArticleData) => {
       setSingleArticle(singleArticleData);
       setIsLoading(false);
     });
   }, [article_id]);
-
-  console.log(singleArticle);
 
   return (
     <main>
