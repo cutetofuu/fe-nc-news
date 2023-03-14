@@ -3,28 +3,52 @@ import { useParams } from "react-router-dom";
 import { SingleArticleCard } from "./SingleArticleCard";
 import { Comments } from "./Comments";
 import { getArticleById } from "../utils/api";
+import { getCommentsByArticleId } from "../utils/api";
 
 export const SingleArticle = () => {
   const [singleArticle, setSingleArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [comments, setComments] = useState([]);
+  const [articleLoading, setArticleLoading] = useState(true);
+  const [commentsLoading, setCommentsLoading] = useState(true);
   const { article_id } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
+    setArticleLoading(true);
     getArticleById(article_id).then((singleArticleData) => {
       setSingleArticle(singleArticleData);
-      setIsLoading(false);
+      setArticleLoading(false);
+    });
+  }, [article_id]);
+
+  useEffect(() => {
+    setCommentsLoading(true);
+    getCommentsByArticleId(article_id).then((articleComments) => {
+      setComments(articleComments);
+      setCommentsLoading(false);
     });
   }, [article_id]);
 
   return (
     <main>
-      {isLoading ? (
+      {articleLoading ? (
         <p>Loading article...</p>
       ) : (
         <>
           <SingleArticleCard singleArticle={singleArticle} />
-          <Comments />
+          <h3>Comments</h3>
+          {commentsLoading ? (
+            <p>Loading comments...</p>
+          ) : (
+            <ul>
+              {comments.map((comment) => {
+                return (
+                  <li key={comment.comment_id}>
+                    <Comments comment={comment} />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </>
       )}
     </main>
