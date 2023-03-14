@@ -35,6 +35,17 @@ ul {
   margin: 12px 0 24px;
 }
 
+.links {
+  color: #000;
+  text-decoration: none;
+}
+
+.links:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
 .article__img {
   margin-bottom: 10px;
   max-width: 100%;
