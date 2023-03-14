@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import { SingleArticleCard } from "./SingleArticleCard";
+import { Comments } from "./Comments";
 
 export const SingleArticle = () => {
   const [singleArticle, setSingleArticle] = useState({});
@@ -23,7 +24,10 @@ export const SingleArticle = () => {
       {isLoading ? (
         <p>Loading article...</p>
       ) : (
-        <SingleArticleCard singleArticle={singleArticle} />
+        <>
+          <SingleArticleCard singleArticle={singleArticle} />
+          <Comments />
+        </>
       )}
     </main>
   );

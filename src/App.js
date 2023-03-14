@@ -3,6 +3,7 @@ import "./App.css";
 import { Header } from "./Header/Header";
 import { Nav } from "./Header/Nav";
 import { Articles } from "./Main/Articles";
+import { SingleArticle } from "./Main/SingleArticle";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Articles />} />
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
       </Routes>
     </div>
   );
