@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { patchArticleDownvote, patchArticleUpvote } from "../utils/api";
 
 export const ArticleCard = ({
   article_img_url,
@@ -9,8 +11,57 @@ export const ArticleCard = ({
   topic,
   created_at,
   article_id,
+  setArticles,
 }) => {
+  const [err, setErr] = useState(null);
   const date = new Date(created_at);
+
+  const handleArticleUpvote = (article_id) => {
+    setArticles((currArticles) => {
+      return currArticles.map((article) => {
+        if (article.article_id === article_id) {
+          return { ...article, votes: article.votes + 1 };
+        }
+        return article;
+      });
+    });
+
+    patchArticleUpvote(article_id).catch(() => {
+      setArticles((currArticles) => {
+        return currArticles.map((article) => {
+          if (article.article_id === article_id) {
+            return { ...article, votes: article.votes - 1 };
+          }
+          return article;
+        });
+      });
+      setErr("Something went wrong, please try again.");
+    });
+  };
+
+  const handleArticleDownvote = (article_id) => {
+    setArticles((currArticles) => {
+      return currArticles.map((article) => {
+        if (article.article_id === article_id) {
+          return { ...article, votes: article.votes - 1 };
+        }
+        return article;
+      });
+    });
+
+    patchArticleDownvote(article_id).catch(() => {
+      setArticles((currArticles) => {
+        return currArticles.map((article) => {
+          if (article.article_id === article_id) {
+            return { ...article, votes: article.votes + 1 };
+          }
+          return article;
+        });
+      });
+      setErr("Something went wrong, please try again.");
+    });
+  };
+
   return (
     <section className="section__article">
       <Link to={`/articles/${article_id}`} className="links">
@@ -23,14 +74,19 @@ export const ArticleCard = ({
       <div className="article__card__footer">
         <span>#{topic}</span>
         <div className="article__icons">
-          <span>
-            <i className="fa-regular fa-thumbs-up"></i> {votes}
-          </span>
+          <button onClick={() => handleArticleUpvote(article_id)}>
+            <i className="fa-regular fa-thumbs-up"></i>
+          </button>
+          {votes}
+          <button onClick={() => handleArticleDownvote(article_id)}>
+            <i className="fa-regular fa-thumbs-down"></i>
+          </button>
           <span>
             <i className="fa-regular fa-comment"></i> {comment_count}
           </span>
         </div>
       </div>
+      {err ? <p>{err}</p> : null}
     </section>
   );
 };

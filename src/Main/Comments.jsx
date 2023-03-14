@@ -1,5 +1,6 @@
 export const Comments = ({ comment: { body, author, created_at, votes } }) => {
   const date = new Date(created_at);
+
   return (
     <>
       <section className="section__comment">
