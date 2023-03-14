@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticles } from "../utils/api";
 import { SingleArticleCard } from "./SingleArticleCard";
 import { Comments } from "./Comments";
+import { getArticleById } from "../utils/api";
 
 export const SingleArticle = () => {
   const [singleArticle, setSingleArticle] = useState({});
@@ -11,13 +11,11 @@ export const SingleArticle = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(article_id).then((singleArticleData) => {
+    getArticleById(article_id).then((singleArticleData) => {
       setSingleArticle(singleArticleData);
       setIsLoading(false);
     });
   }, [article_id]);
-
-  console.log(singleArticle);
 
   return (
     <main>
