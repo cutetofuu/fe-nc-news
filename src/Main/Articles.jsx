@@ -19,7 +19,7 @@ export const Articles = () => {
       {isLoading ? (
         <p>Loading articles...</p>
       ) : (
-        <ul>
+        <ul className="article__cards">
           {articles.map((article) => {
             return (
               <li key={article.article_id}>
