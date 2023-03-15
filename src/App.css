@@ -93,9 +93,37 @@ ul {
   margin-bottom: 40px;
 }
 
+button {
+  border: 1px dashed #000;
+  border-radius: 10px;
+}
+
 .article__icons {
   display: flex;
-  gap: 10px;
+  gap: 6px;
+}
+
+.button__downvote {
+  margin-right: 6px;
+}
+
+.button__upvote:hover {
+  color: rgb(37, 41, 255);
+  cursor: pointer;
+}
+
+.button__downvote:hover {
+  color: rgb(255, 76, 53);
+  cursor: pointer;
+}
+
+.err__message {
+  border: 2px dashed rgb(255, 76, 53);
+  border-radius: 10px;
+  background-color: #f9fad6;
+  color: rgb(255, 76, 53);
+  font-weight: 800;
+  padding: 10px 0;
 }
 
 @media only screen and (min-width: 440px) {

@@ -23,7 +23,11 @@ export const Articles = () => {
           {articles.map((article) => {
             return (
               <li key={article.article_id}>
-                <ArticleCard key={article.article_id} {...article} />
+                <ArticleCard
+                  key={article.article_id}
+                  {...article}
+                  setArticles={setArticles}
+                />
               </li>
             );
           })}

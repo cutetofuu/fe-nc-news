@@ -1,3 +1,9 @@
+import { useState } from "react";
+import {
+  handleSingleArticleUpvote,
+  handleSingleArticleDownvote,
+} from "../utils/utils";
+
 export const SingleArticleCard = ({
   singleArticle: {
     title,
@@ -8,9 +14,15 @@ export const SingleArticleCard = ({
     topic,
     votes,
     comment_count,
+    article_id,
   },
+  setSingleArticle,
 }) => {
+  const [userUpvote, setUserUpvote] = useState(0);
+  const [userDownvote, setUserDownvote] = useState(0);
+  const [err, setErr] = useState(null);
   const date = new Date(created_at);
+
   return (
     <section className="section__single_article">
       <h2 className="article__title">{title}</h2>
@@ -23,14 +35,33 @@ export const SingleArticleCard = ({
       <div className="article__card__footer">
         <span>#{topic}</span>
         <div className="article__icons">
-          <span>
-            <i className="fa-regular fa-thumbs-up"></i> {votes}
-          </span>
+          <button
+            className="button__upvote"
+            onClick={() =>
+              handleSingleArticleUpvote(article_id, setUserUpvote, setErr)
+            }
+            disabled={userUpvote !== 0}
+          >
+            <i className="fa-regular fa-thumbs-up"></i>
+          </button>
+          {votes + userUpvote + userDownvote}
+          <button
+            className="button__downvote"
+            onClick={() =>
+              handleSingleArticleDownvote(article_id, setUserDownvote, setErr)
+            }
+            disabled={userDownvote !== 0}
+          >
+            <i className="fa-regular fa-thumbs-down"></i>
+          </button>
           <span>
             <i className="fa-regular fa-comment"></i> {comment_count}
           </span>
         </div>
       </div>
+      {err ? (
+        <p className="err__message">Something went wrong, please try again.</p>
+      ) : null}
     </section>
   );
 };
