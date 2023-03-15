@@ -118,7 +118,12 @@ button {
 }
 
 .err__message {
+  border: 2px dashed rgb(255, 76, 53);
+  border-radius: 10px;
+  background-color: #f9fad6;
   color: rgb(255, 76, 53);
+  font-weight: 800;
+  padding: 10px 0;
 }
 
 @media only screen and (min-width: 440px) {
