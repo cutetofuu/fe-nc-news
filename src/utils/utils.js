@@ -1,81 +1,45 @@
 import { patchArticleDownvote, patchArticleUpvote } from "./api";
 
-export const handleArticleUpvote = (article_id, setArticles, setErr) => {
-  setArticles((currArticles) => {
-    return currArticles.map((article) => {
-      if (article.article_id === article_id) {
-        return { ...article, votes: article.votes + 1 };
-      }
-      return article;
-    });
-  });
-
+export const handleArticleUpvote = (article_id, setUserUpvote, setErr) => {
+  setErr(false);
+  setUserUpvote(1);
   patchArticleUpvote(article_id).catch(() => {
-    setArticles((currArticles) => {
-      return currArticles.map((article) => {
-        if (article.article_id === article_id) {
-          return { ...article, votes: article.votes - 1 };
-        }
-        return article;
-      });
-    });
-    setErr("Something went wrong, please try again.");
+    setUserUpvote(0);
+    setErr(true);
   });
 };
 
-export const handleArticleDownvote = (article_id, setArticles, setErr) => {
-  setArticles((currArticles) => {
-    return currArticles.map((article) => {
-      if (article.article_id === article_id) {
-        return { ...article, votes: article.votes - 1 };
-      }
-      return article;
-    });
-  });
-
+export const handleArticleDownvote = (article_id, setUserDownvote, setErr) => {
+  setErr(false);
+  setUserDownvote(-1);
   patchArticleDownvote(article_id).catch(() => {
-    setArticles((currArticles) => {
-      return currArticles.map((article) => {
-        if (article.article_id === article_id) {
-          return { ...article, votes: article.votes + 1 };
-        }
-        return article;
-      });
-    });
-    setErr("Something went wrong, please try again.");
+    setUserDownvote(0);
+    setErr(true);
   });
 };
 
 export const handleSingleArticleUpvote = (
   article_id,
-  setSingleArticle,
+  setUserUpvote,
   setErr
 ) => {
-  setSingleArticle((currArticle) => {
-    return { ...currArticle, votes: currArticle.votes + 1 };
-  });
-
+  setErr(false);
+  setUserUpvote(1);
   patchArticleUpvote(article_id).catch(() => {
-    setSingleArticle((currArticle) => {
-      return { ...currArticle, votes: currArticle.votes - 1 };
-    });
-    setErr("Something went wrong, please try again.");
+    setUserUpvote(0);
+    setErr(true);
   });
 };
 
 export const handleSingleArticleDownvote = (
   article_id,
-  setSingleArticle,
+  setUserDownvote,
   setErr
 ) => {
-  setSingleArticle((currArticle) => {
-    return { ...currArticle, votes: currArticle.votes - 1 };
-  });
-
+  setErr(false);
+  setUserDownvote(-1);
   patchArticleDownvote(article_id).catch(() => {
-    setSingleArticle((currArticle) => {
-      return { ...currArticle, votes: currArticle.votes + 1 };
-    });
-    setErr("Something went wrong, please try again.");
+    setUserDownvote(0);
+    setErr(true);
   });
 };
