@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { SingleArticleCard } from "./SingleArticleCard";
+import { CommentAdder } from "./CommentAdder";
 import { Comments } from "./Comments";
 import { getArticleById } from "../utils/api";
 import { getCommentsByArticleId } from "../utils/api";
@@ -38,6 +39,7 @@ export const SingleArticle = () => {
             singleArticle={singleArticle}
             setSingleArticle={setSingleArticle}
           />
+          <CommentAdder article_id={article_id} setComments={setComments} />
           <h3>Comments</h3>
           {commentsLoading ? (
             <p>Loading comments...</p>
