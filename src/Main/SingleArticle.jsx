@@ -34,7 +34,10 @@ export const SingleArticle = () => {
         <p>Loading article...</p>
       ) : (
         <>
-          <SingleArticleCard singleArticle={singleArticle} />
+          <SingleArticleCard
+            singleArticle={singleArticle}
+            setSingleArticle={setSingleArticle}
+          />
           <h3>Comments</h3>
           {commentsLoading ? (
             <p>Loading comments...</p>
