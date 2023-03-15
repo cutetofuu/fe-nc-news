@@ -29,3 +29,14 @@ export const patchArticleUpvote = (article_id) => {
 export const patchArticleDownvote = (article_id) => {
   return newsApi.patch(`/articles/${article_id}`, { inc_votes: -1 });
 };
+
+export const postComment = (article_id, newComment) => {
+  return newsApi
+    .post(`/articles/${article_id}/comments`, {
+      username: "cooljmessy",
+      body: newComment,
+    })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
