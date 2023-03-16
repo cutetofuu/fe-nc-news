@@ -26,43 +26,50 @@ export const Articles = () => {
         <p>Loading articles...</p>
       ) : (
         <>
-          <label htmlFor="select__sort_by">
-            Sort by:
-            <select
-              id="select__sort_by"
-              value={selectedSortBy}
-              onChange={(event) => {
-                setSelectedSortBy(event.target.value);
-                newSearchParams.set("sort_by", event.target.value);
-                setSearchParams(newSearchParams);
-              }}
-            >
-              <option value="created_at">Date</option>
-              <option value="votes">Votes</option>
-              <option value="title">Title</option>
-              <option value="author">Author</option>
-            </select>
-          </label>
-          <button
-            value="asc"
-            onClick={() => {
-              setSelectedOrder("asc");
-              newSearchParams.set("order", "asc");
-              setSearchParams(newSearchParams);
-            }}
-          >
-            <i className="fa-solid fa-angle-up"></i>
-          </button>
-          <button
-            value="desc"
-            onClick={() => {
-              setSelectedOrder("desc");
-              newSearchParams.set("order", "desc");
-              setSearchParams(newSearchParams);
-            }}
-          >
-            <i className="fa-solid fa-angle-down"></i>
-          </button>
+          <section className="section__sort_by">
+            <label htmlFor="select__sort_by" className="select__dropdown_label">
+              Sort by:
+              <select
+                id="select__sort_by"
+                className="select__dropdown_box"
+                value={selectedSortBy}
+                onChange={(event) => {
+                  setSelectedSortBy(event.target.value);
+                  newSearchParams.set("sort_by", event.target.value);
+                  setSearchParams(newSearchParams);
+                }}
+              >
+                <option value="created_at">Date</option>
+                <option value="votes">Votes</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+              </select>
+            </label>
+            <div className="buttons__order">
+              <button
+                className="button__asc"
+                value="asc"
+                onClick={() => {
+                  setSelectedOrder("asc");
+                  newSearchParams.set("order", "asc");
+                  setSearchParams(newSearchParams);
+                }}
+              >
+                <i className="fa-solid fa-angle-up"></i>
+              </button>
+              <button
+                className="button__desc"
+                value="desc"
+                onClick={() => {
+                  setSelectedOrder("desc");
+                  newSearchParams.set("order", "desc");
+                  setSearchParams(newSearchParams);
+                }}
+              >
+                <i className="fa-solid fa-angle-down"></i>
+              </button>
+            </div>
+          </section>
 
           <ul className="article__cards">
             {articles.map((article) => {
