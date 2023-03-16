@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { postComment } from "../utils/api";
 
-export const CommentAdder = ({ article_id, setComments }) => {
+export const CommentAdder = ({ article_id, setComments, loggedInUser }) => {
   const [newComment, setNewComment] = useState("");
   const [postInProgress, setPostInProgress] = useState(null);
   const [postSuccess, setPostSuccess] = useState(null);
@@ -16,7 +16,7 @@ export const CommentAdder = ({ article_id, setComments }) => {
     } else {
       setEmptyComment(false);
       setPostInProgress(true);
-      postComment(article_id, newComment)
+      postComment(article_id, newComment, loggedInUser)
         .then((newCommentFromApi) => {
           setComments((currComments) => {
             return [newCommentFromApi, ...currComments];

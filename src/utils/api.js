@@ -30,10 +30,10 @@ export const patchArticleDownvote = (article_id) => {
   return newsApi.patch(`/articles/${article_id}`, { inc_votes: -1 });
 };
 
-export const postComment = (article_id, newComment) => {
+export const postComment = (article_id, newComment, loggedInUser) => {
   return newsApi
     .post(`/articles/${article_id}/comments`, {
-      username: "cooljmessy",
+      username: loggedInUser,
       body: newComment,
     })
     .then(({ data }) => {
