@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
 import { ArticleCard } from "./ArticleCard";
 import { getArticles } from "../utils/api";
+import { useSearchParams } from "react-router-dom";
 
-export const Articles = () => {
+export const Articles = ({ selectedTopic, setSelectedTopic }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const newSearchParams = new URLSearchParams(searchParams);
+  const topicQuery = newSearchParams.get("topic");
 
   useEffect(() => {
+    if (selectedTopic !== undefined) {
+      newSearchParams.set("topic", selectedTopic);
+    } else if (topicQuery !== null) {
+      setSelectedTopic(topicQuery);
+    }
+    setSearchParams(newSearchParams);
     setIsLoading(true);
-    getArticles().then((articlesData) => {
+    getArticles(selectedTopic).then((articlesData) => {
       setArticles(articlesData);
       setIsLoading(false);
     });
-  }, []);
+  }, [selectedTopic, topicQuery]);
 
   return (
     <main>
