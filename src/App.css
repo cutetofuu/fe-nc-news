@@ -117,10 +117,11 @@ button {
   cursor: pointer;
 }
 
-.err__message {
+.err__message,
+.post_err__message {
   border: 2px dashed rgb(255, 76, 53);
   border-radius: 10px;
-  background-color: #f9fad6;
+  background-color: #fff0e9;
   color: rgb(255, 76, 53);
   font-weight: 800;
   padding: 10px 0;
@@ -137,10 +138,16 @@ button {
   margin-bottom: 60px;
 }
 
+.textarea__new_comment,
+.button_comment_adder,
+.post_success__message,
+.post_err__message {
+  width: 700px;
+}
+
 .textarea__new_comment {
   background-color: #fff;
   box-sizing: border-box;
-  width: 700px;
   height: 100px;
   resize: vertical;
 }
@@ -151,13 +158,21 @@ button {
   color: #fff;
   font-size: 1rem;
   font-weight: 800;
-  width: 700px;
   padding: 10px;
 }
 
 .button_comment_adder:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.post_success__message {
+  border: 2px dashed rgb(0, 173, 101);
+  border-radius: 10px;
+  background-color: #dbfaf0;
+  color: rgb(3, 112, 45);
+  font-weight: 800;
+  padding: 10px 0;
 }
 
 /* Media Queries */
