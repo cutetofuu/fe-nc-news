@@ -33,7 +33,7 @@ ul {
   justify-content: center;
   gap: 10px;
   font-size: 1.1rem;
-  margin: 12px 0 24px;
+  margin: 12px 0 40px;
 }
 
 .links {
@@ -172,6 +172,31 @@ button {
   color: rgb(3, 112, 45);
   font-weight: 800;
   padding: 10px 0;
+}
+
+/* Topics */
+
+.section__topics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button__topic {
+  font-size: 1.1rem;
+  width: 200px;
+  margin-bottom: 18px;
+  padding: 16px;
+}
+
+.button__topic:hover {
+  cursor: pointer;
+  background-color: #f7f7e1;
+  font-family: "Aleo", serif;
+  font-size: 1.25rem;
+  width: 220px;
+  margin-bottom: 18px;
+  padding: 20px;
 }
 
 /* Media Queries */
