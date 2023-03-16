@@ -3,14 +3,27 @@ import { postComment } from "../utils/api";
 
 export const CommentAdder = ({ article_id, setComments }) => {
   const [newComment, setNewComment] = useState("");
+  const [postInProgress, setPostInProgress] = useState(null);
+  const [postSuccess, setPostSuccess] = useState(null);
+  const [err, setErr] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postComment(article_id, newComment).then((newCommentFromApi) => {
-      setComments((currComments) => {
-        return [newCommentFromApi, ...currComments];
+    setPostInProgress(true);
+    postComment(article_id, newComment)
+      .then((newCommentFromApi) => {
+        setComments((currComments) => {
+          return [newCommentFromApi, ...currComments];
+        });
+        setPostInProgress(false);
+        setPostSuccess(true);
+        setErr(false);
+      })
+      .catch(() => {
+        setPostInProgress(false);
+        setPostSuccess(false);
+        setErr(true);
       });
-    });
   };
 
   return (
@@ -28,6 +41,15 @@ export const CommentAdder = ({ article_id, setComments }) => {
       <button className="button_comment_adder" type="submit">
         POST
       </button>
+      {postInProgress ? <p>Posting comment...</p> : null}
+      {err ? (
+        <p className="post_err__message">
+          Something went wrong, please try again.
+        </p>
+      ) : null}
+      {postSuccess ? (
+        <p className="post_success__message">Your post was successful!</p>
+      ) : null}
     </form>
   );
 };
