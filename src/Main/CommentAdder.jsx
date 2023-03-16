@@ -5,25 +5,32 @@ export const CommentAdder = ({ article_id, setComments }) => {
   const [newComment, setNewComment] = useState("");
   const [postInProgress, setPostInProgress] = useState(null);
   const [postSuccess, setPostSuccess] = useState(null);
+  const [emptyComment, setEmptyComment] = useState(null);
   const [err, setErr] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setPostInProgress(true);
-    postComment(article_id, newComment)
-      .then((newCommentFromApi) => {
-        setComments((currComments) => {
-          return [newCommentFromApi, ...currComments];
+    if (newComment.length === 0) {
+      setEmptyComment(true);
+      setPostSuccess(false);
+    } else {
+      setEmptyComment(false);
+      setPostInProgress(true);
+      postComment(article_id, newComment)
+        .then((newCommentFromApi) => {
+          setComments((currComments) => {
+            return [newCommentFromApi, ...currComments];
+          });
+          setPostInProgress(false);
+          setPostSuccess(true);
+          setErr(false);
+        })
+        .catch(() => {
+          setPostInProgress(false);
+          setPostSuccess(false);
+          setErr(true);
         });
-        setPostInProgress(false);
-        setPostSuccess(true);
-        setErr(false);
-      })
-      .catch(() => {
-        setPostInProgress(false);
-        setPostSuccess(false);
-        setErr(true);
-      });
+    }
   };
 
   return (
@@ -41,6 +48,9 @@ export const CommentAdder = ({ article_id, setComments }) => {
       <button className="button_comment_adder" type="submit">
         POST
       </button>
+      {emptyComment ? (
+        <p className="post_err__message">Please enter a comment.</p>
+      ) : null}
       {postInProgress ? <p>Posting comment...</p> : null}
       {err ? (
         <p className="post_err__message">
