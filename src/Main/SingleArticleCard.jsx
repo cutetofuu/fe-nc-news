@@ -16,7 +16,6 @@ export const SingleArticleCard = ({
     comment_count,
     article_id,
   },
-  setSingleArticle,
 }) => {
   const [userUpvote, setUserUpvote] = useState(0);
   const [userDownvote, setUserDownvote] = useState(0);
