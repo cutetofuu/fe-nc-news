@@ -117,14 +117,64 @@ button {
   cursor: pointer;
 }
 
-.err__message {
+.err__message,
+.post_err__message {
   border: 2px dashed rgb(255, 76, 53);
   border-radius: 10px;
-  background-color: #f9fad6;
+  background-color: #fff0e9;
   color: rgb(255, 76, 53);
   font-weight: 800;
   padding: 10px 0;
 }
+
+/* CommentAdder */
+
+.comment_adder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  padding: 0 18px;
+}
+
+.new_comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textarea__new_comment {
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 100px;
+  resize: vertical;
+}
+
+.button_comment_adder {
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 10px;
+}
+
+.button_comment_adder:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.post_success__message {
+  border: 2px dashed rgb(0, 173, 101);
+  border-radius: 10px;
+  background-color: #dbfaf0;
+  color: rgb(3, 112, 45);
+  font-weight: 800;
+  padding: 10px 0;
+}
+
+/* Media Queries */
 
 @media only screen and (min-width: 440px) {
   .article__cards {
@@ -140,22 +190,42 @@ button {
     width: 400px;
     margin: auto;
   }
+
+  .comment_adder {
+    width: 400px;
+    margin: auto;
+  }
+
+  .new_comment {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media only screen and (min-width: 500px) {
   .section__single_article,
-  .section__comment {
+  .section__comment,
+  .comment_adder {
     width: 80%;
+  }
+
+  .comment_adder {
+    margin: auto;
   }
 }
 
 @media only screen and (min-width: 880px) {
   .section__single_article,
-  .section__comment {
+  .section__comment,
+  .comment_adder {
     width: 700px;
   }
 
   .section__single_article {
     margin-bottom: 60px;
+  }
+
+  .comment_adder {
+    margin: auto;
   }
 }
