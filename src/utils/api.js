@@ -29,3 +29,9 @@ export const patchArticleUpvote = (article_id) => {
 export const patchArticleDownvote = (article_id) => {
   return newsApi.patch(`/articles/${article_id}`, { inc_votes: -1 });
 };
+
+export const getTopics = () => {
+  return newsApi.get("/topics").then(({ data }) => {
+    return data.topics;
+  });
+};
