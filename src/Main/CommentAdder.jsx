@@ -24,6 +24,7 @@ export const CommentAdder = ({ article_id, setComments, loggedInUser }) => {
           setPostInProgress(false);
           setPostSuccess(true);
           setErr(false);
+          setNewComment("");
         })
         .catch(() => {
           setPostInProgress(false);
@@ -45,7 +46,11 @@ export const CommentAdder = ({ article_id, setComments, loggedInUser }) => {
           placeholder="Enter text here..."
         />
       </label>
-      <button className="button_comment_adder" type="submit">
+      <button
+        className="button_comment_adder"
+        type="submit"
+        disabled={postInProgress === true}
+      >
         POST
       </button>
       {emptyComment ? (
