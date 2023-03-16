@@ -133,16 +133,15 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 20px;
-  margin-bottom: 60px;
+  padding: 0 18px;
 }
 
-.textarea__new_comment,
-.button_comment_adder,
-.post_success__message,
-.post_err__message {
-  width: 700px;
+.new_comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .textarea__new_comment {
@@ -191,22 +190,42 @@ button {
     width: 400px;
     margin: auto;
   }
+
+  .comment_adder {
+    width: 400px;
+    margin: auto;
+  }
+
+  .new_comment {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media only screen and (min-width: 500px) {
   .section__single_article,
-  .section__comment {
+  .section__comment,
+  .comment_adder {
     width: 80%;
+  }
+
+  .comment_adder {
+    margin: auto;
   }
 }
 
 @media only screen and (min-width: 880px) {
   .section__single_article,
-  .section__comment {
+  .section__comment,
+  .comment_adder {
     width: 700px;
   }
 
   .section__single_article {
     margin-bottom: 60px;
+  }
+
+  .comment_adder {
+    margin: auto;
   }
 }
