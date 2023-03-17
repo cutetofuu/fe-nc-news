@@ -385,3 +385,10 @@ button {
     margin: auto;
   }
 }
+
+@media only screen and (min-width: 1400px) {
+  .article__cards {
+    margin: auto;
+    width: 1400px;
+  }
+}
