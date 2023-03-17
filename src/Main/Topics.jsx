@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getTopics } from "../utils/api";
 
-export const Topics = ({ setSelectedTopic }) => {
+export const Topics = () => {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,12 +25,8 @@ export const Topics = ({ setSelectedTopic }) => {
             {topics.map((topic) => {
               return (
                 <li key={topic.slug}>
-                  <Link to="/articles">
-                    <button
-                      className="button__topic"
-                      value={topic.slug}
-                      onClick={() => setSelectedTopic(topic.slug)}
-                    >
+                  <Link to={`/topics/${topic.slug}`}>
+                    <button className="button__topic" value={topic.slug}>
                       {topic.slug}
                     </button>
                   </Link>

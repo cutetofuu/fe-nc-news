@@ -9,39 +9,20 @@ import { Topics } from "./Main/Topics";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState("cooljmessy");
-  const [selectedTopic, setSelectedTopic] = useState(undefined);
 
   return (
     <div className="App">
       <Header />
-      <Nav setSelectedTopic={setSelectedTopic} />
+      <Nav />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Articles
-              selectedTopic={selectedTopic}
-              setSelectedTopic={setSelectedTopic}
-            />
-          }
-        />
-        <Route
-          path="/articles"
-          element={
-            <Articles
-              selectedTopic={selectedTopic}
-              setSelectedTopic={setSelectedTopic}
-            />
-          }
-        />
+        <Route path="/" element={<Articles />} />
+        <Route path="/articles" element={<Articles />} />
         <Route
           path="/articles/:article_id"
           element={<SingleArticle loggedInUser={loggedInUser} />}
         />
-        <Route
-          path="/topics"
-          element={<Topics setSelectedTopic={setSelectedTopic} />}
-        />
+        <Route path="/topics" element={<Topics />} />
+        <Route path="/topics/:topic_name" element={<Articles />} />
       </Routes>
     </div>
   );
