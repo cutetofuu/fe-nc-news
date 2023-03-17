@@ -22,6 +22,10 @@ function App() {
         />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:topic_name" element={<Articles />} />
+        <Route
+          path="/*"
+          element={<p className="path__err_message">404: Page not found</p>}
+        />
       </Routes>
     </div>
   );

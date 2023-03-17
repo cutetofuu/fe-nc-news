@@ -11,6 +11,7 @@ export const SingleArticle = ({ loggedInUser }) => {
   const [comments, setComments] = useState([]);
   const [articleLoading, setArticleLoading] = useState(true);
   const [commentsLoading, setCommentsLoading] = useState(true);
+  const [err, setErr] = useState(null);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -23,11 +24,20 @@ export const SingleArticle = ({ loggedInUser }) => {
 
   useEffect(() => {
     setCommentsLoading(true);
-    getCommentsByArticleId(article_id).then((articleComments) => {
-      setComments(articleComments);
-      setCommentsLoading(false);
-    });
+    getCommentsByArticleId(article_id)
+      .then((articleComments) => {
+        setComments(articleComments);
+        setCommentsLoading(false);
+      })
+      .catch((err) => {
+        setCommentsLoading(false);
+        setErr(`${err.response.status}: ${err.response.data.msg}`);
+      });
   }, [article_id]);
+
+  if (err) {
+    return <p className="path__err_message">{err}</p>;
+  }
 
   return (
     <main>

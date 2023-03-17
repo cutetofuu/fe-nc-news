@@ -8,17 +8,24 @@ export const Articles = () => {
   const [selectedSortBy, setSelectedSortBy] = useState("created_at");
   const [selectedOrder, setSelectedOrder] = useState("desc");
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(null);
   const { topic_name } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic_name, selectedSortBy, selectedOrder).then(
-      (articlesData) => {
+    getArticles(topic_name, selectedSortBy, selectedOrder)
+      .then((articlesData) => {
         setArticles(articlesData);
         setIsLoading(false);
-      }
-    );
+      })
+      .catch((err) => {
+        setErr(`${err.response.status}: ${err.response.data.msg}`);
+      });
   }, [topic_name, selectedSortBy, selectedOrder]);
+
+  if (err) {
+    return <p className="path__err_message">{err}</p>;
+  }
 
   return (
     <main>
