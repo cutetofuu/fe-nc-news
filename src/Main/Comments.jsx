@@ -6,30 +6,29 @@ export const Comments = ({
   setComments,
   loggedInUser,
 }) => {
+  const [confirmDelete, setConfirmDelete] = useState(null);
   const [deleteInProgress, setDeleteInProgress] = useState(null);
   const [err, setErr] = useState(null);
 
   const date = new Date(created_at);
 
   const handleDelete = (comment_id) => {
-    if (window.confirm("Are you sure you want to delete your comment?")) {
-      setDeleteInProgress(true);
-      setErr(false);
-      deleteComment(comment_id)
-        .then(() => {
-          setComments((currComments) =>
-            currComments.filter((comment) => {
-              return comment.comment_id !== comment_id;
-            })
-          );
-          setDeleteInProgress(false);
-          alert("Your comment was successfully deleted.");
-        })
-        .catch(() => {
-          setDeleteInProgress(false);
-          setErr(true);
-        });
-    }
+    setConfirmDelete(false);
+    setDeleteInProgress(true);
+    setErr(false);
+    deleteComment(comment_id)
+      .then(() => {
+        setComments((currComments) =>
+          currComments.filter((comment) => {
+            return comment.comment_id !== comment_id;
+          })
+        );
+        setDeleteInProgress(false);
+      })
+      .catch(() => {
+        setDeleteInProgress(false);
+        setErr(true);
+      });
   };
 
   return (
@@ -46,8 +45,8 @@ export const Comments = ({
             </span>
             {author === loggedInUser ? (
               <button
-                className="button__delete_comment"
-                onClick={() => handleDelete(comment_id)}
+                className="button__confirm_delete_comment"
+                onClick={() => setConfirmDelete(true)}
                 disabled={deleteInProgress === true}
               >
                 <i className="fa-solid fa-trash"></i>
@@ -55,6 +54,27 @@ export const Comments = ({
             ) : null}
           </div>
         </div>
+        {confirmDelete ? (
+          <div className="confirm_delete__message">
+            <p className="header__confirm_delete">
+              Are you sure you want to delete your comment?
+            </p>
+            <div className="buttons__delete_options">
+              <button
+                className="button__delete_comment"
+                onClick={() => handleDelete(comment_id)}
+              >
+                Yes
+              </button>
+              <button
+                className="button__cancel_delete_comment"
+                onClick={() => setConfirmDelete(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : null}
         {deleteInProgress ? (
           <p className="message__in_progress">Deleting comment...</p>
         ) : null}
