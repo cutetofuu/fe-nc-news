@@ -33,7 +33,7 @@ ul {
   justify-content: center;
   gap: 10px;
   font-size: 1.1rem;
-  margin: 12px 0 24px;
+  margin: 12px 0 40px;
 }
 
 .links {
@@ -86,6 +86,24 @@ ul {
   margin: 0 auto 40px;
 }
 
+.comment__vote_and_delete {
+  display: flex;
+  gap: 8px;
+}
+
+.button__delete_comment {
+  border: none;
+  font-size: 1rem;
+}
+
+.button__delete_comment:hover {
+  color: rgb(255, 76, 53);
+}
+
+.message__in_progress {
+  text-align: center;
+}
+
 .article__card__footer {
   display: flex;
   justify-content: space-between;
@@ -124,6 +142,7 @@ button {
   background-color: #fff0e9;
   color: rgb(255, 76, 53);
   font-weight: 800;
+  text-align: center;
   padding: 10px 0;
 }
 
