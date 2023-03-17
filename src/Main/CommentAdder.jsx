@@ -26,7 +26,8 @@ export const CommentAdder = ({ article_id, setComments, loggedInUser }) => {
           setErr(false);
           setNewComment("");
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           setPostInProgress(false);
           setPostSuccess(false);
           setErr(true);
