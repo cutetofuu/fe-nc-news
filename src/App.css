@@ -86,6 +86,25 @@ ul {
   margin: 0 auto 40px;
 }
 
+.comment__vote_and_delete {
+  display: flex;
+  gap: 8px;
+}
+
+.button__confirm_delete_comment {
+  border: none;
+  font-size: 1rem;
+}
+
+.button__confirm_delete_comment:hover {
+  color: rgb(255, 76, 53);
+  cursor: pointer;
+}
+
+.message__in_progress {
+  text-align: center;
+}
+
 .article__card__footer {
   display: flex;
   justify-content: space-between;
@@ -124,6 +143,7 @@ button {
   background-color: #fff0e9;
   color: rgb(255, 76, 53);
   font-weight: 800;
+  text-align: center;
   padding: 10px 0;
 }
 
@@ -165,13 +185,65 @@ button {
   opacity: 0.8;
 }
 
-.post_success__message {
+.post_success__message,
+.delete_success__message {
   border: 2px dashed rgb(0, 173, 101);
   border-radius: 10px;
   background-color: #dbfaf0;
   color: rgb(3, 112, 45);
   font-weight: 800;
   padding: 10px 0;
+}
+
+/* Delete Comment */
+
+.message__in_progress,
+.confirm_delete__message {
+  border: 2px dashed rgb(206, 133, 23);
+  border-radius: 10px;
+  color: rgb(206, 133, 23);
+  font-weight: 800;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.message__in_progress,
+.confirm_delete__message,
+.header__confirm_delete,
+.buttons__delete_options {
+  background-color: #f9fdd0;
+}
+
+.header__confirm_delete {
+  margin: 0 0 14px;
+}
+
+.buttons__delete_options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.button__delete_comment,
+.button__cancel_delete_comment {
+  border: 1px dashed #000;
+  font-size: 1rem;
+  padding: 4px 10px;
+}
+
+.button__delete_comment:hover {
+  background-color: #fff0e9;
+  border-color: rgb(255, 76, 53);
+  cursor: pointer;
+  color: rgb(255, 76, 53);
+}
+
+.button__cancel_delete_comment:hover {
+  background-color: #edecfd;
+  border-color: rgb(37, 41, 255);
+  cursor: pointer;
+  color: rgb(37, 41, 255);
 }
 
 /* SortByOptions */
