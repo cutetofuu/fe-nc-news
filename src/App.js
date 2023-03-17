@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
 import "./App.css";
 import { Header } from "./Header/Header";
 import { Nav } from "./Header/Nav";
@@ -8,7 +7,7 @@ import { SingleArticle } from "./Main/SingleArticle";
 import { Topics } from "./Main/Topics";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState("cooljmessy");
+  const loggedInUser = "cooljmessy";
 
   return (
     <div className="App">
