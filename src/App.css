@@ -182,21 +182,36 @@ button {
   justify-content: center;
 }
 
-.button__topic {
-  font-size: 1.1rem;
-  width: 200px;
-  margin-bottom: 18px;
-  padding: 16px;
+.header__topic {
+  margin-bottom: 40px;
 }
 
-.button__topic:hover {
+.list__topic {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin: auto;
+}
+
+.li__topic {
+  border: 1px dashed #000;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  padding: 20px 20px;
+  width: 180px;
+}
+
+.link__topic {
+  color: #000;
+  text-decoration: none;
+}
+
+.li__topic:hover {
   cursor: pointer;
   background-color: #f7f7e1;
   font-family: "Aleo", serif;
   font-size: 1.25rem;
-  width: 220px;
-  margin-bottom: 18px;
-  padding: 20px;
+  text-align: center;
 }
 
 /* Media Queries */
