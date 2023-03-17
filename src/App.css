@@ -303,6 +303,7 @@ button {
 }
 
 .li__topic {
+  background-color: #f9f9f9;
   border: 1px dashed #000;
   border-radius: 10px;
   font-size: 1.1rem;

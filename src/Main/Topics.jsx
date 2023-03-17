@@ -24,11 +24,11 @@ export const Topics = () => {
           <ul className="list__topic">
             {topics.map((topic) => {
               return (
-                <li key={topic.slug} className="li__topic">
-                  <Link to={`/topics/${topic.slug}`} className="link__topic">
+                <Link to={`/topics/${topic.slug}`} className="link__topic">
+                  <li key={topic.slug} className="li__topic">
                     {topic.slug}
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               );
             })}
           </ul>
