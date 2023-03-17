@@ -36,7 +36,7 @@ export const CommentAdder = ({ article_id, setComments, loggedInUser }) => {
 
   return (
     <form className="comment_adder" onSubmit={handleSubmit}>
-      <label htmlFor="new_comment" class="new_comment">
+      <label htmlFor="new_comment" className="new_comment">
         <h3>Add a Comment</h3>
         <textarea
           id="new_comment"
