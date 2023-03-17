@@ -137,7 +137,8 @@ button {
 }
 
 .err__message,
-.post_err__message {
+.post_err__message,
+.path__err_message {
   border: 2px dashed rgb(255, 76, 53);
   border-radius: 10px;
   background-color: #fff0e9;
@@ -322,6 +323,12 @@ button {
   text-align: center;
 }
 
+/* Error Handling */
+
+.path__err_message {
+  margin: 0 10px;
+}
+
 /* Media Queries */
 
 @media only screen and (min-width: 440px) {
@@ -334,7 +341,8 @@ button {
 
   .section__article,
   .section__single_article,
-  .section__comment {
+  .section__comment,
+  .path__err_message {
     width: 400px;
     margin: auto;
   }
