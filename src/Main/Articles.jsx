@@ -35,8 +35,6 @@ export const Articles = () => {
                 value={selectedSortBy}
                 onChange={(event) => {
                   setSelectedSortBy(event.target.value);
-                  newSearchParams.set("sort_by", event.target.value);
-                  setSearchParams(newSearchParams);
                 }}
               >
                 <option value="created_at">Date</option>
@@ -51,8 +49,6 @@ export const Articles = () => {
                 value="asc"
                 onClick={() => {
                   setSelectedOrder("asc");
-                  newSearchParams.set("order", "asc");
-                  setSearchParams(newSearchParams);
                 }}
               >
                 <i className="fa-solid fa-angle-up"></i>
@@ -62,8 +58,6 @@ export const Articles = () => {
                 value="desc"
                 onClick={() => {
                   setSelectedOrder("desc");
-                  newSearchParams.set("order", "desc");
-                  setSearchParams(newSearchParams);
                 }}
               >
                 <i className="fa-solid fa-angle-down"></i>
