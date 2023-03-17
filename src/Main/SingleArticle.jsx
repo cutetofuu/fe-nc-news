@@ -52,7 +52,11 @@ export const SingleArticle = ({ loggedInUser }) => {
               {comments.map((comment) => {
                 return (
                   <li key={comment.comment_id}>
-                    <Comments comment={comment} setComments={setComments} />
+                    <Comments
+                      comment={comment}
+                      setComments={setComments}
+                      loggedInUser={loggedInUser}
+                    />
                   </li>
                 );
               })}

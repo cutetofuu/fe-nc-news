@@ -4,6 +4,7 @@ import { deleteComment } from "../utils/api";
 export const Comments = ({
   comment: { body, author, created_at, votes, comment_id },
   setComments,
+  loggedInUser,
 }) => {
   const [deleteInProgress, setDeleteInProgress] = useState(null);
   const [err, setErr] = useState(null);
@@ -43,13 +44,15 @@ export const Comments = ({
             <span>
               <i className="fa-regular fa-thumbs-up"></i> {votes}
             </span>
-            <button
-              className="button__delete_comment"
-              onClick={() => handleDelete(comment_id)}
-              disabled={deleteInProgress === true}
-            >
-              <i className="fa-solid fa-trash"></i>
-            </button>
+            {author === loggedInUser ? (
+              <button
+                className="button__delete_comment"
+                onClick={() => handleDelete(comment_id)}
+                disabled={deleteInProgress === true}
+              >
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            ) : null}
           </div>
         </div>
         {deleteInProgress ? (
