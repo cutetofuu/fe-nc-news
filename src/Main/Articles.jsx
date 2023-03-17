@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ArticleCard } from "./ArticleCard";
 import { getArticles } from "../utils/api";
 
@@ -8,17 +8,17 @@ export const Articles = () => {
   const [selectedSortBy, setSelectedSortBy] = useState("created_at");
   const [selectedOrder, setSelectedOrder] = useState("desc");
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const newSearchParams = new URLSearchParams(searchParams);
+  const { topic_name } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(selectedSortBy, selectedOrder).then((articlesData) => {
-      setArticles(articlesData);
-      setIsLoading(false);
-    });
-  }, [selectedSortBy, selectedOrder]);
+    getArticles(topic_name, selectedSortBy, selectedOrder).then(
+      (articlesData) => {
+        setArticles(articlesData);
+        setIsLoading(false);
+      }
+    );
+  }, [topic_name, selectedSortBy, selectedOrder]);
 
   return (
     <main>
